@@ -1,7 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter
 
-from app.models.item import Item
+from crud_app.models.item import Item
 
 
 router = APIRouter(

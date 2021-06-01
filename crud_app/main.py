@@ -4,16 +4,16 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from app.models.item import Item
-from app.routers import items
+from crud_app.models.item import Item
+from crud_app.routers import items
 
 
 app = FastAPI()
 
 # Static Files and Templates
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory="crud_app/static"), name="static")
 
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="crud_app/templates")
 
 # Routers
 app.include_router(items.router)
