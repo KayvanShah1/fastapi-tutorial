@@ -2,7 +2,7 @@
 
 To run the development server
 ```
-uvicorn app.main:app --reload
+uvicorn crud_app.main:app --reload
 ```
 
 Deployed the App using DETA
