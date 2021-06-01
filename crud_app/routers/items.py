@@ -6,7 +6,7 @@ from crud_app.models.item import Item
 
 router = APIRouter(
     prefix="/items",
-    tags=["items"],
+    tags=["Items"],
     responses={
         404: {"description": "Not found"}
     }
