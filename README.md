@@ -6,7 +6,7 @@ uvicorn crud_app.main:app --reload
 ```
 
 ## Deployed the App using Heroku
-
+[Visit the app here](https://fastapi-crud-app.herokuapp.com/)
 
 ## Managing secrets and credentials
 Place the secret information in a `.env` file
