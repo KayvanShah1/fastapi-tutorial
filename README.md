@@ -5,6 +5,8 @@ To run the development server
 uvicorn crud_app.main:app --reload
 ```
 
+There are many features to add to the app.
+
 ## Deployed the App using Heroku
 [Visit the app here](https://fastapi-crud-app.herokuapp.com/)
 
