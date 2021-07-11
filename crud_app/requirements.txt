@@ -27,6 +27,7 @@ PyYAML==5.4.1
 requests==2.25.1
 Rx==1.6.1
 six==1.16.0
+SQLAlchemy==1.4.20
 starlette==0.14.2
 typing-extensions==3.10.0.0
 ujson==4.0.2
