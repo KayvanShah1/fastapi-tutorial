@@ -3,7 +3,7 @@ from databases.blog import Base
 from sqlalchemy.orm import relationship
 
 
-class Blog(Base):
+class BlogSchema(Base):
     __tablename__ = "blogs"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -14,7 +14,7 @@ class Blog(Base):
     creator = relationship("User", back_populates="blogs")
 
 
-class User(Base):
+class UserSchema(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
