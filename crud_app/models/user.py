@@ -1,6 +1,6 @@
 from typing import List
 from pydantic import BaseModel
-from blog import Blog
+from crud_app.models.blog import Blog
 
 
 class User(BaseModel):
