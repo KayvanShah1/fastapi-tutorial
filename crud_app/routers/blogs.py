@@ -4,8 +4,9 @@ from fastapi import APIRouter, status, HTTPException, Depends
 from sqlalchemy.orm import Session
 
 from crud_app.databases.blog import get_db
-from crud_app.models.blog import ShowBlog, Blog
+from crud_app.models.blog import ShowBlog, Blog, User
 from crud_app.schemas.blog import BlogSchema
+from crud_app.dependencies import oauth2
 
 
 router = APIRouter(
@@ -14,13 +15,17 @@ router = APIRouter(
 
 
 @router.get("/", response_model=List[ShowBlog])
-def all(db: Session = Depends(get_db)):
+def all(
+    db: Session = Depends(get_db), current_user: User = Depends(oauth2.get_current_user)
+):
     blogs = db.query(BlogSchema).all()
     return blogs
 
 
 @router.get("/{id}", status_code=200, response_model=ShowBlog)
-def show(db: Session = Depends(get_db)):
+def show(
+    db: Session = Depends(get_db), current_user: User = Depends(oauth2.get_current_user)
+):
     blog = db.query(BlogSchema).filter(BlogSchema.id == id).first()
     if not blog:
         raise HTTPException(
@@ -31,7 +36,11 @@ def show(db: Session = Depends(get_db)):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create(request: Blog, db: Session = Depends(get_db)):
+def create(
+    request: Blog,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(oauth2.get_current_user),
+):
     new_blog = BlogSchema(title=request.title, body=request.body, user_id=1)
     db.add(new_blog)
     db.commit()
@@ -40,7 +49,12 @@ def create(request: Blog, db: Session = Depends(get_db)):
 
 
 @router.put("/{id}")
-def update(id: int, request: Blog, db: Session = Depends(get_db)):
+def update(
+    id: int,
+    request: Blog,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(oauth2.get_current_user),
+):
     blog = db.query(BlogSchema).filter(BlogSchema.id == id)
     if not blog.first():
         raise HTTPException(
@@ -52,7 +66,11 @@ def update(id: int, request: Blog, db: Session = Depends(get_db)):
 
 
 @router.delete("/{id}")
-def delete(id: int, db: Session = Depends(get_db)):
+def delete(
+    id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(oauth2.get_current_user),
+):
     blog = db.query(BlogSchema).filter(BlogSchema.id == id)
     if not blog.first():
         raise HTTPException(

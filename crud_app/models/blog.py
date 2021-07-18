@@ -1,5 +1,5 @@
+from typing import List
 from pydantic import BaseModel
-from crud_app.models.user import ShowUser
 
 
 class BlogBase(BaseModel):
@@ -12,6 +12,21 @@ class Blog(BlogBase):
         orm_mode = True
 
 
+class User(BaseModel):
+    name: str
+    email: str
+    password: str
+
+
+class ShowUser(BaseModel):
+    name: str
+    email: str
+    blogs: List[Blog] = []
+
+    class Config:
+        orm_mode = True
+
+
 class ShowBlog(BaseModel):
     title: str
     body: str
@@ -19,3 +34,8 @@ class ShowBlog(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Login(BaseModel):
+    username: str
+    password: str

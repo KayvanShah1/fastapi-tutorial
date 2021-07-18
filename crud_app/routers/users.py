@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from crud_app.dependencies.hashing import Hash
 from crud_app.databases.blog import get_db
 from crud_app.schemas.blog import UserSchema
-from crud_app.models.user import User, ShowUser
+from crud_app.models.blog import User, ShowUser
 
 
 router = APIRouter(
