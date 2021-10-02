@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from blog import models, schemas
+from crud_app.blog import models, schemas
 from fastapi import HTTPException, status
-from blog.dependencies.hashing import Hash
+from crud_app.blog.dependencies.hashing import Hash
 
 
 def create(request: schemas.User, db: Session):
