@@ -4,12 +4,13 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# from crud_app.databases.blog import engine
-# from crud_app.routers import items, blogs, users, authentication
-# from crud_app.schemas import blog
+from crud_app.blog import models
+from crud_app.blog.database import engine
+
+# from crud_app.blog.routers import items, blogs, users, authentication
 
 
-# blog.Base.metadata.create_all(engine)
+models.Base.metadata.create_all(engine)
 
 app = FastAPI()
 
