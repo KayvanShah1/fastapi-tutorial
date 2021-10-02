@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from crud_app.blog import models
 from crud_app.blog.database import engine
 
-# from crud_app.blog.routers import items, blogs, users, authentication
+from crud_app.blog.routers import blogs, users, authentication
 
 
 models.Base.metadata.create_all(engine)
@@ -20,10 +20,9 @@ app.mount("/static", StaticFiles(directory="crud_app/static"), name="static")
 templates = Jinja2Templates(directory="crud_app/templates")
 
 # Routers
-# app.include_router(items.router)
-# app.include_router(blogs.router)
-# app.include_router(users.router)
-# app.include_router(authentication.router)
+app.include_router(blogs.router)
+app.include_router(users.router)
+app.include_router(authentication.router)
 
 
 # Home Page
